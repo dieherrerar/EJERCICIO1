@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Agregar informulario</h1>
+
+    {% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+
+
+    <form  method="POST">
+        {% csrf_token %}
+       <label for="">Rut</label>
+       <input type="text" placeholder="Ingrese su RUT " name="rut">
+       <pre>Nombre : <input type="text" name="nombre"></pre>
+       <pre>Apellido P : <input type="text" name="paterno"></pre>
+       <pre>Apellido M : <input type="text" name="materno"></pre>
+       <pre>Fec Nacimiento : <input type="date" name="fechaNAC"></pre>
+       <label for="genero">Género:</label>
+       <select name="genero" id="genero">
+           <option value="Masculino">Masculino</option>
+           <option value="Femenino">Femenino</option>
+       </select>
+       <pre>Telefono  : <input type="number" name="fono"></pre>
+       <pre>Email : <input type="email" name="correo"></pre>
+       <pre>Direccion  : <input type="text" name="direccion"></pre>
+       <button type="submit">Enviar</button>
+       <button type="reset">Borrar </button>
+
+       
+        
+    </form>
+</body>
+</html>

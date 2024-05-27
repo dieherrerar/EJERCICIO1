@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,5 +8,16 @@
 </head>
 <body>
     <h1>HOLA ALUMNOS</h1>
+    <br>
+
+    <ul>
+        {% for alumno in alumnos %}
+            <li>
+                {{ alumno.nombre }} {{ alumno.apellido_paterno }} {{ alumno.apellido_materno }} - {{ alumno.email }}
+            </li>
+        {% endfor %}
+        
+    </ul>
+    <br>
 </body>
 </html>
