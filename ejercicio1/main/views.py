@@ -1,6 +1,7 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .models import Alumno,Genero
 from django.db import IntegrityError
+from .forms import RegistroForm
 
 # Create your views here.
 def home(request):
@@ -51,3 +52,27 @@ def addAlumno(request):
             error_message = "El correo electrónico ya existe en la base de datos. Por favor, ingresa un correo electrónico diferente."
             return render(request, 'form.html', {'error_message': error_message})
         
+
+
+def  RegistroAlumno(request):
+    if request.method == 'POST':
+        formulario = RegistroForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('inicio')
+    else:
+        formulario=RegistroForm()
+        return render(request,'FormN.html',{'form': formulario})
+    
+
+def editar_alumno(request, rut):
+    alumno = get_object_or_404(Alumno, rut=rut)
+    if request.method == 'POST':
+        formulario = RegistroForm(request.POST, instance=alumno)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('inicio')
+    else:
+        formulario=RegistroForm(instance=alumno)
+        return render(request,'editar_alumno.html',{'form': formulario})
+    

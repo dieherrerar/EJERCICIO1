@@ -7,13 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>HOLA ALUMNOS</h1>
+    <h1>INFORMACIÓN DE ALUMNOS</h1>
     <br>
 
     <ul>
         {% for alumno in alumnos %}
-            <li>
-                {{ alumno.nombre }} {{ alumno.apellido_paterno }} {{ alumno.apellido_materno }} - {{ alumno.email }}
+            <li>{% if alumno.rut %}
+                    <a href="{% url 'editar_alumno' alumno.rut %}">{{ alumno.rut }} {{ alumno.nombre }} {{ alumno.apellido_paterno }} {{ alumno.apellido_materno }}</a> - {{ alumno.email }}
+                {% else %}
+                    {{ alumno.nombre }} {{ alumno.apellido_paterno }} {{ alumno.apellido_materno }} - {{ alumno.email }}
+                {% endif %}
             </li>
         {% endfor %}
         
